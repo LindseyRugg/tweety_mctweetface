@@ -19,6 +19,11 @@ form-group<h2>Edit <%= resource_name.to_s.humanize %></h2>
   </div>
 
   <div class="form-group">
+  <strong>Upload a Profile Pic:</strong>
+  <%= f.file_field :avatar %>
+  </div>
+
+  <div class="form-group">
     <%= f.text_field :location, placeholder: "Location", class: "form-control" %>
   </div>
 
