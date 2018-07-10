@@ -14,7 +14,7 @@
     <% end %>
 </p>
 
-<% @user.tweets.each do |tweet| %>
+<% @user.tweets.reverse_each do |tweet| %>
     <div>
         <p>@<%= @user.username %></p>
 	<p><%= tweet.message %></p>

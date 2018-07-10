@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get 'tag_tweets' => 'epicenter#tag_tweets'
 
+  get 'all_tweets' => 'tweets#index'
+
   resources :tweets
   devise_for :users
 end
