@@ -14,16 +14,15 @@
   <tbody>
     <% @tweets.each do |tweet| %>
       <tr>
-        <td><%= tweet.message %></td>
-        <td>@<%= link_to tweet.user.username, show_user_path(id: tweet.user.id) %></td>
-        <td><%= link_to 'Show', tweet %></td>
-        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= tweet.message.html_safe %></td>
+        <td><%= image_tag tweet.user.avatar.url, size: 25 %> <%= link_to "@#{tweet.user.username}", show_user_path(id: tweet.user.id) %></td>
+        <td> <%= Time.now - tweet.created_at < 86400 ? "#{time_ago_in_words(tweet.created_at)} ago" : tweet.created_at.strftime('%b %e') %></td>
+        <% if current_user.username == tweet.user.username %>
+        <td><%= link_to 'Show', tweet, class: "btn btn-info btn-sm" %></td>
+        <td><%= link_to 'Edit', edit_tweet_path(tweet), class: "btn btn-warning btn-sm" %></td>
+        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Tweet', new_tweet_path %>
